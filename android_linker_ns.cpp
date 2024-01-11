@@ -32,7 +32,7 @@ struct android_namespace_t *android_create_namespace(const char *name,
                                                      uint64_t type,
                                                      const char *permitted_when_isolated_path,
                                                      android_namespace_t *parent_namespace) {
-    auto caller{__builtin_return_address(0)};
+    auto caller{reinterpret_cast<void *>(&dlopen)};
     return loader_android_create_namespace(name, ld_library_path, default_library_path, type,
                                            permitted_when_isolated_path, parent_namespace, caller);
 }
